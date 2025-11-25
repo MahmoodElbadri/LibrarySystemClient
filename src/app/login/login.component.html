@@ -1,0 +1,55 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h3 class="mb-0">Login</h3>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="signInForm" (ngSubmit)="signIn(signInForm.value)">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">email</label>
+                            <input
+                                type="text"
+                                formControlName="email"
+                                class="form-control"
+                                id="email"
+                                placeholder="Enter your email">
+                            @if(signInForm.get('email')?.invalid && signInForm.get('email')?.touched){
+                                <div class="text-danger mt-1">
+                                    @if(signInForm.get('email')?.errors?.['required']){
+                                        email is required
+                                    }
+                                    @if(signInForm.get('email')?.errors?.['email']){
+                                        Please enter a valid email
+                                    }
+                                </div>
+                            }
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input
+                                type="text"
+                                formControlName="password"
+                                class="form-control"
+                                id="password"
+                                placeholder="Enter your password">
+                            @if(signInForm.get('password')?.errors?.['required'] && signInForm.get('password')?.touched){
+                                <div class="text-danger mt-1">
+                                    Password is required
+                                </div>
+                            }
+                        </div>
+                        
+                        <div class="d-grid">
+                            <button [disabled]="signInForm.invalid" type="submit" class="btn btn-primary">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

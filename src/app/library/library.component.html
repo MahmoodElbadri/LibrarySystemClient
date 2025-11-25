@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <div class="header text-center mb-4">
+    <h1 class="display-4 fw-bold text-primary">Our Library</h1>
+    <p class="lead text-muted">Discover amazing books in our collection</p>
+  </div>
+
+  <div class="mt-3">
+    @if(books.length > 0){
+      <div class="row g-4">
+        @for (book of books; track $index) {
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+              <img [src]="book.coverUrl"
+                   [alt]="book.title"
+                   class="card-img-top"
+                   style="height: 200px; object-fit: cover;"
+                   onerror="this.src='assets/images/no-image.png'"/>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{book.title}}</h5>
+                <p class="card-text flex-grow-1">
+                  <strong>Author:</strong> {{book.author}}<br>
+                  <strong>Description:</strong> {{book.description}}<br>
+                  <strong>Category:</strong> {{book.categoryName}}
+                </p>
+                <div class="mt-auto">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="fw-bold">Status:</span>
+                    @if(book.isAvailable){
+                      <button (click)="borrowBook(book.id)" class="btn btn-sm btn-outline-success">
+                        <i class="fas fa-check-circle me-1"></i>Available
+                      </button>
+                    }
+                    @else{
+                      <button class="btn btn-sm btn-outline-danger" disabled>
+                        <i class="fas fa-times-circle me-1"></i>Unavailable
+                      </button>
+                    }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+    @else {
+      <div class="alert alert-info text-center shadow-sm" role="alert">
+        <i class="fas fa-book-open fa-2x mb-3"></i>
+        <h4 class="alert-heading">No Books Found!</h4>
+        <p class="mb-0">We couldn't find any books in our library at the moment.</p>
+      </div>
+    }
+  </div>
+</div>
