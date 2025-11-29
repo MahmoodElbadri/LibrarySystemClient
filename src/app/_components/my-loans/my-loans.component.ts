@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { LibraryService } from '../_services/library.service';
-import { LoanDto } from '../_models/loan-dto';
+import { LibraryService } from '../../_services/library.service';
+import { LoanDto } from '../../_models/loan-dto';
 import {DatePipe} from '@angular/common';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { LibraryService } from '../_services/library.service';
-import { Book } from '../_models/book';
+import { LibraryService } from '../../_services/library.service';
+import { Book } from '../../_models/book';
 
 @Component({
   selector: 'app-library',

@@ -1,8 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { LoginRequest } from '../_models/login-request';
-import { LoginService } from '../_services/login.service';
+import { LoginRequest } from '../../_models/login-request';
+import { LoginService } from '../../_services/login.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
   fb = inject(FormBuilder);
   loginService = inject(LoginService);
   router = inject(Router);
+  toastr = inject(ToastrService);
 
   createForm() {
     this.signInForm = this.fb.group({
@@ -36,10 +38,11 @@ export class LoginComponent implements OnInit {
     this.loginService.logIn(loginRequest).subscribe({
       next: (response) => {
         this.router.navigate(['/']);
+        this.toastr.success('Login Successful');
         console.log(response);
       },
       error: (error) => {
-        console.log('error while sedding request',error);
+        console.log('error while sending request',error);
       }
     })
   }

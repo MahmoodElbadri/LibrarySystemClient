@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { LibraryComponent } from './library/library.component';
-import { MyLoansComponent } from './my-loans/my-loans.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './_components/login/login.component';
+import { LibraryComponent } from './_components/library/library.component';
+import { MyLoansComponent } from './_components/my-loans/my-loans.component';
+import { RegisterComponent } from './_components/register/register.component';
+import {authGuard} from './_guards/auth.guard';
+import { AddBookComponent } from './_components/add-book/add-book.component';
 
 export const routes: Routes =
     [
@@ -19,11 +21,18 @@ export const routes: Routes =
         {
             path: 'My-Loans',
             component: MyLoansComponent,
-            title: 'My Loans'
+            title: 'My Loans',
+            canActivate: [authGuard]
         },
         {
             path: 'register',
             component: RegisterComponent,
             title: 'Register'
+        },
+        {
+            path: 'add-book',
+            component: AddBookComponent,
+            title: 'Add Book',
+            canActivate: [authGuard]
         }
     ];
