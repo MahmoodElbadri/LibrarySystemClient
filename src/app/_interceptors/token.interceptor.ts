@@ -7,8 +7,8 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
   const loginService = inject(LoginService);
 
   const user = loginService.currentUser();
-  console.log('Interceptor running for URL:', req.url); 
-  console.log('Current User Signal:', user);
+  // console.log('Interceptor running for URL:', req.url); 
+  // console.log('Current User Signal:', user);
   // console.log(user?.accessToken);
   if(user){
     if(req.url.includes('login') || req.url.includes('register')) {return next(req);}

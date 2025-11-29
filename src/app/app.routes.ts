@@ -5,6 +5,7 @@ import { MyLoansComponent } from './_components/my-loans/my-loans.component';
 import { RegisterComponent } from './_components/register/register.component';
 import {authGuard} from './_guards/auth.guard';
 import { AddBookComponent } from './_components/add-book/add-book.component';
+import { EditBookComponent } from './_components/edit-book/edit-book.component';
 
 export const routes: Routes =
     [
@@ -33,6 +34,12 @@ export const routes: Routes =
             path: 'add-book',
             component: AddBookComponent,
             title: 'Add Book',
+            canActivate: [authGuard]
+        },
+        {
+            path: 'edit-book/:id',
+            component: EditBookComponent,
+            title: 'Edit Book',
             canActivate: [authGuard]
         }
     ];

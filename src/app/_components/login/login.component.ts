@@ -4,6 +4,7 @@ import { LoginRequest } from '../../_models/login-request';
 import { LoginService } from '../../_services/login.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -34,17 +35,29 @@ export class LoginComponent implements OnInit {
     this.createForm();
   }
 
+  // login.component.ts
+
   signIn(loginRequest: LoginRequest) {
     this.loginService.logIn(loginRequest).subscribe({
       next: (response) => {
-        this.router.navigate(['/']);
         this.toastr.success('Login Successful');
-        console.log(response);
+        
+        this.loginService.getUserRole(loginRequest.email).subscribe({
+            next: (role) => {
+                localStorage.setItem('role', role);
+                console.log("User Role is:", role);
+                this.router.navigate(['/']); 
+            },
+            error: (err) => {
+                console.error("Could not fetch role", err);
+                this.router.navigate(['/']); 
+            }
+        });
       },
-      error: (error) => {
-        console.log('error while sending request',error);
+      error: (err) => {
+        this.toastr.error('Invalid Email or Password');
       }
-    })
+    });
   }
 
 }

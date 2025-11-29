@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { Component, inject, OnInit } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { LoginService } from '../../_services/login.service';
 
 @Component({
@@ -7,15 +7,18 @@ import { LoginService } from '../../_services/login.service';
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './nav.component.html',
-  styleUrl: './nav.component.css'
+  styleUrl: './nav.component.css',
 })
-export class NavComponent {
-
-
-  logOut() {
-this.loginService.logOut();
-}
+export class NavComponent implements OnInit{
 
   loginService = inject(LoginService);
+  role!: string;
 
+  ngOnInit(): void {
+    this.role = localStorage.getItem('role') ?? '';
+  }
+
+    logOut() {
+    this.loginService.logOut();
+  }
 }

@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { LibraryService } from '../../_services/library.service';
 import { LoanDto } from '../../_models/loan-dto';
 import {DatePipe} from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-my-loans',
@@ -16,6 +17,7 @@ export class MyLoansComponent implements OnInit {
 
   libService = inject(LibraryService);
   books!: LoanDto[];
+  toastr = inject(ToastrService);
 
   ngOnInit(): void {
     this.getMyLoans();
@@ -37,6 +39,7 @@ export class MyLoansComponent implements OnInit {
     this.libService.returnBook(id).subscribe({
       next: () => {
        this. books = this.books.filter(book => book.bookId !== id);
+        this.toastr.success('Book returned successfully.');
       },
       error: (error) => {
         console.log(error);

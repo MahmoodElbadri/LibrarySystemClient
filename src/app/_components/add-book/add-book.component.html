@@ -1,11 +1,112 @@
-<div class="container">
-  <div class="header text-center mb-4">
-    <h1 class="display-4 fw-bold text-primary">Add Book</h1>
-    <p class="lead text-muted">Add a new book to our library</p>
-  </div>
-  <div class="mt-3">
-    <form >
-
-    </form>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white text-center">
+          <h3 class="mb-0">Add Book</h3>
+          <p class="mb-0">Add a new book to our library</p>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="addBook" (ngSubmit)="createBook(addBook.value)">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input
+                formControlName="title"
+                id="title"
+                type="text"
+                class="form-control"
+                placeholder="Enter book title"
+              />
+              <div class="text-danger">
+                @if(addBook.get('title')?.invalid &&
+                addBook.get('title')?.touched){
+                @if(addBook.get('title')?.errors?.['required']){ Title is
+                required } }
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="author" class="form-label">Author</label>
+              <input
+                formControlName="author"
+                id="author"
+                type="text"
+                class="form-control"
+                placeholder="Enter book author"
+              />
+              <div class="text-danger">
+                @if(addBook.get('author')?.invalid &&
+                addBook.get('author')?.touched){
+                @if(addBook.get('author')?.errors?.['required']){ Author is
+                required } }
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <input
+                formControlName="description"
+                id="description"
+                type="text"
+                class="form-control"
+                placeholder="Enter book description"
+              />
+              <div class="text-danger">
+                @if(addBook.get('description')?.invalid &&
+                addBook.get('description')?.touched){
+                @if(addBook.get('description')?.errors?.['required']){
+                Description is required } }
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="category">Category</label>
+              <select
+                formControlName="category"
+                class="form-select"
+                id="category"
+              >
+                <option value="" selected disabled>
+                  --Select a category--
+                </option>
+                @for (cat of categories; track $index; let i = $index){
+                <option [value]="cat.id">{{ cat.name }}</option>
+                }
+              </select>
+              <div class="text-danger">
+                @if(addBook.get('category')?.invalid &&
+                addBook.get('category')?.touched){
+                @if(addBook.get('category')?.errors?.['required']){ Category is
+                required } }
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="coverImage" class="form-label">Cover Image</label>
+              <input
+                formControlName="coverImage"
+                id="coverImage"
+                type="file"
+                class="form-control"
+                (change)="onFileSelected($event)"
+                accept="image/*"
+              />
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-between">
+              <button
+                type="submit"
+                class="btn btn-primary flex-fill me-md-2"
+                [disabled]="addBook.invalid"
+              >
+                Submit
+              </button>
+              <a
+                type="button"
+                class="btn btn-secondary flex-fill ms-md-2"
+                [routerLink]="['/']"
+              >
+                Cancel
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
