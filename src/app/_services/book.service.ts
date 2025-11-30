@@ -4,31 +4,33 @@ import { HttpClient } from '@angular/common/http';
 import { CreateBookDto } from '../_models/create-book-dto';
 import { Book } from '../_models/book';
 import { CategoryDto } from '../_models/category-dto';
-import {BookDto} from '../_models/book-dto';
+import { BookDto } from '../_models/book-dto';
 import { EditBookDto } from '../_models/edit-book-dto';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BookService {
+  baseUrl = envirement.apiUrl;
+  http = inject(HttpClient);
 
- baseUrl = envirement.apiUrl;
- http = inject(HttpClient);
+  addBook(model: any) {
+    return this.http.post<Book>(`${this.baseUrl}books`, model);
+  }
 
- addBook(model: any) {
-  return this.http.post<Book>(`${this.baseUrl}books`, model);
- }
+  getBook(bookId: number) {
+    return this.http.get<BookDto>(`${this.baseUrl}books/${bookId}`);
+  }
 
- getBook(bookId: number){
-   return this.http.get<BookDto>(`${this.baseUrl}books/${bookId}`);
- }
+  getCategories() {
+    return this.http.get<CategoryDto[]>(`${this.baseUrl}categories`);
+  }
 
- getCategories(){
-  return this.http.get<CategoryDto[]>(`${this.baseUrl}categories`);
- }
+  editBook(bookId: number, model: any) {
+    return this.http.put<BookDto>(`${this.baseUrl}books/${bookId}`, model);
+  }
 
- editBook(bookId: number, model: any){
-  return this.http.put<BookDto>(`${this.baseUrl}books/${bookId}`, model);
- }
-
+  deleteBook(bookId: number) {
+    return this.http.delete(`${this.baseUrl}books/${bookId}`);
+  }
 }

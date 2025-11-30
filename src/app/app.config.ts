@@ -8,6 +8,7 @@ import { authGuard } from './_guards/auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { errorInterceptor } from './_interceptors/error.interceptor';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 export const appConfig: ApplicationConfig = {
@@ -24,7 +25,8 @@ export const appConfig: ApplicationConfig = {
         autoDismiss: true,
         closeButton: true,
         timeOut: 10000
-      })
+      }),
+      NgbModalModule,
     )
   ]
 };

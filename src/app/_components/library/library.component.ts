@@ -1,26 +1,22 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, TemplateRef } from '@angular/core';
 import { LibraryService } from '../../_services/library.service';
 import { Book } from '../../_models/book';
-import {FormsModule} from '@angular/forms';
-import {RouterLink, RouterModule} from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { RouterLink, RouterModule } from '@angular/router';
 import { CategoryDto } from '../../_models/category-dto';
 import { BookService } from '../../_services/book.service';
 import { LoginService } from '../../_services/login.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-library',
   standalone: true,
-  imports: [
-    FormsModule,
-    RouterLink
-  ],
+  imports: [FormsModule, RouterLink],
   templateUrl: './library.component.html',
-  styleUrl: './library.component.css'
+  styleUrl: './library.component.css',
 })
 export class LibraryComponent implements OnInit {
-
-
-
   libService = inject(LibraryService);
   books: Book[] = [];
   cats!: CategoryDto[];
@@ -29,31 +25,37 @@ export class LibraryComponent implements OnInit {
   bookService = inject(BookService);
   loginService = inject(LoginService);
   role!: string;
-
+  bookToDelete: any = null;
+  modalService = inject(NgbModal);
+  toastr = inject(ToastrService);
 
   ngOnInit(): void {
     this.getBooks();
     this.getCats();
-    if(this.loginService.getUserRole(this.loginService.currentEmail()!).subscribe(role => this.role = role)){
-    if (this.role) {
-      this.role = this.role;
+    if (
+      this.loginService
+        .getUserRole(this.loginService.currentEmail()!)
+        .subscribe((role) => (this.role = role))
+    ) {
+      if (this.role) {
+        this.role = this.role;
+      }
     }
   }
-  }
 
-  getCats(){
+  getCats() {
     this.bookService.getCategories().subscribe({
       next: (categories) => {
-       this.cats = categories;
-      }
-    })
+        this.cats = categories;
+      },
+    });
   }
 
-resetFilters() {
-  this.searchTerm = '';
-  this.categoryId = 0;
-  this.getBooks();
-}
+  resetFilters() {
+    this.searchTerm = '';
+    this.categoryId = 0;
+    this.getBooks();
+  }
 
   getBooks() {
     this.libService.getBooks(this.searchTerm, this.categoryId).subscribe({
@@ -62,21 +64,33 @@ resetFilters() {
       },
       error: (error) => {
         console.log(error);
-      }
+      },
     });
   }
 
   borrowBook(bookId: number) {
     this.libService.borrowBook(bookId).subscribe({
       next: (books) => {
-        const book = this.books.find(tmp=>tmp.id===bookId);
-        if(book){
+        const book = this.books.find((tmp) => tmp.id === bookId);
+        if (book) {
           book.isAvailable = false;
         }
       },
       error: (error) => {
         console.log(error);
-      }
+      },
+    });
+  }
+
+  deleteBook(arg0: number) {
+    this.bookService.deleteBook(arg0).subscribe({
+      next: () => {
+        this.getBooks();
+        this.toastr.success('Book deleted successfully.');
+      },
+      error: (error) => {
+        console.log(error);
+      },
     });
   }
 }
