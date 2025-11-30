@@ -1,26 +1,98 @@
-# LibrarySystemClient
+# 📚 Library Management System
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+A modern web application for managing library operations including book cataloging, user management, and loan tracking. Built with Angular and designed with a clean, responsive interface.
 
-## Development server
+## ✨ Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **User Authentication**
+  - Secure login and registration
+  - Role-based access control (Admin/User)
+  - JWT token authentication
 
-## Code scaffolding
+- **Book Management**
+  - Add, edit, and delete books
+  - Categorize books
+  - Upload book cover images
+  - Search and filter books
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Loan Management**
+  - Borrow and return books
+  - View loan history
+  - Track due dates
 
-## Build
+- **Category Management**
+  - Create and manage book categories
+  - Assign categories to books
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🚀 Getting Started
 
-## Running unit tests
+### Prerequisites
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Node.js (v16 or later)
+- Angular CLI (v15 or later)
+- .NET Core SDK (for the backend API)
 
-## Running end-to-end tests
+### Installation
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+1. **Clone the repository**
+   ```bash
+   git clone ---
+   cd LibrarySystem/LibrarySystem.Client
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment**
+   - Create a copy of `src/environments/environment.development.ts`
+   - Update the API URL to point to your backend server
+
+4. **Run the application**
+   ```bash
+   ng serve
+   ```
+   The application will be available at `http://localhost:4200`
+
+## 🏗 Project Structure
+
+```
+src/app/
+├── _components/         # Reusable UI components
+│   ├── add-book/       # Add new book form
+│   ├── edit-book/      # Edit existing book
+│   ├── library/        # Main book listing
+│   ├── login/          # Authentication
+│   ├── my-loans/       # User's loan history
+│   └── categories/     # Category management
+├── _guards/            # Route guards
+├── _interceptors/      # HTTP interceptors
+├── _models/            # Data models and DTOs
+└── _services/          # API services
+```
+
+## 🔧 Development
+
+### Code scaffolding
+
+```bash
+# Generate a new component
+ng generate component components/component-name
+
+# Generate a new service
+ng generate service services/service-name
+```
+
+### Build
+
+```bash
+# Development build
+ng build
+
+# Production build
+ng build --configuration production
+```
 
 ## Further help
 
