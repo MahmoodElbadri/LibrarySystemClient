@@ -12,10 +12,10 @@ import { LoginService } from '../../_services/login.service';
 export class NavComponent implements OnInit{
 
   loginService = inject(LoginService);
-  role!: string;
+  // role!: string;
 
   ngOnInit(): void {
-    this.role = localStorage.getItem('role') ?? '';
+    // this.role = localStorage.getItem('role') ?? '';
   }
 
     logOut() {

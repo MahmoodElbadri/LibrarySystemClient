@@ -3,4 +3,5 @@ export interface EditBookDto {
   author: string;
   description: string;
   categoryId: number;
+  coverImage: string;
 }

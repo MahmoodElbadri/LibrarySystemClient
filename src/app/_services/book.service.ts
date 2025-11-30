@@ -5,6 +5,7 @@ import { CreateBookDto } from '../_models/create-book-dto';
 import { Book } from '../_models/book';
 import { CategoryDto } from '../_models/category-dto';
 import {BookDto} from '../_models/book-dto';
+import { EditBookDto } from '../_models/edit-book-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,10 @@ export class BookService {
 
  getCategories(){
   return this.http.get<CategoryDto[]>(`${this.baseUrl}categories`);
+ }
+
+ editBook(bookId: number, model: any){
+  return this.http.put<BookDto>(`${this.baseUrl}books/${bookId}`, model);
  }
 
 }
