@@ -26,6 +26,18 @@ export class BookService {
     return this.http.get<CategoryDto[]>(`${this.baseUrl}categories`);
   }
 
+  addCategory(model: any){
+    return this.http.post(`${this.baseUrl}categories`, model)
+  }
+
+  updateCategory(){
+
+  }
+
+  deleteCategory(id: number){
+    return this.http.delete(`${this.baseUrl}categories/${id}`)
+  }
+
   editBook(bookId: number, model: any) {
     return this.http.put<BookDto>(`${this.baseUrl}books/${bookId}`, model);
   }
