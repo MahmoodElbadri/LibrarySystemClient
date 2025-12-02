@@ -8,6 +8,7 @@ import {AddBookComponent} from './_components/add-book/add-book.component';
 import {EditBookComponent} from './_components/edit-book/edit-book.component';
 import {CategoriesComponent} from './_components/categories/categories.component';
 import {AddCategoryComponent} from './_components/add-category/add-category.component';
+import {UpdateCategoryComponent} from './_components/update-category/update-category.component';
 
 export const routes: Routes =
   [
@@ -53,6 +54,13 @@ export const routes: Routes =
       path: 'add-category',
       component: AddCategoryComponent,
       title: 'Add Category',
+      canActivate: [authGuard]
+    },
+    {
+      //'edit-category', cat.id]">
+      path: 'edit-category/:id',
+      component: UpdateCategoryComponent,
+      title: 'Edit Category',
       canActivate: [authGuard]
     }
   ];

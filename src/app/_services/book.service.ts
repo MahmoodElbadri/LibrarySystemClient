@@ -30,8 +30,12 @@ export class BookService {
     return this.http.post(`${this.baseUrl}categories`, model)
   }
 
-  updateCategory(){
+  updateCategory(id: number,model: any){
+    return  this.http.put<CategoryDto>(`${this.baseUrl}categories/${id}`, model);
+  }
 
+  getCategory(id: number){
+    return this.http.get<CategoryDto>(`${this.baseUrl}categories/${id}`)
   }
 
   deleteCategory(id: number){

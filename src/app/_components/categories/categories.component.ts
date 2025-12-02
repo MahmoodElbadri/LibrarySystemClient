@@ -4,7 +4,7 @@ import {CategoryDto} from '../../_models/category-dto';
 import {JsonPipe} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
 import { LoginService } from "../../_services/login.service";
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -24,6 +24,7 @@ export class CategoriesComponent implements OnInit {
   cats !: CategoryDto[];
   role!: any;
   loginService = inject(LoginService);
+  router = inject(Router);
 
 
   ngOnInit(): void {
@@ -49,6 +50,8 @@ export class CategoriesComponent implements OnInit {
     this.bookService.deleteCategory(id).subscribe({
       next:()=>{
         this.toastr.success("Category deleted successfully")
+        this.router.navigate(['/categories'])
+        this.cats = this.cats.filter(tmp=>tmp.id !== id);
       },
       error:(err)=>{
         this.toastr.error("Error deleting category")
@@ -56,9 +59,4 @@ export class CategoriesComponent implements OnInit {
     })
   }
 
-
-
-  protected editCategory(id: number) {
-
-  }
 }
