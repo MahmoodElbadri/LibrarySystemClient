@@ -3,24 +3,31 @@
     <h1>Update Category</h1>
   </div>
   <div class="body">
-    <form #updateForm="ngForm" (ngSubmit)="onSubmit(updateForm)">
-      <label class="form-label" for="name">Category Name</label>
-      <input
-      type="text"
-      class="form-control"
-      id="name"
-      [(ngModel)]="category.name"
-      name="name"
-      required
-      >
-      <div class="text-danger">
-        @if(updateForm.form.get('name')?.invalid && updateForm.form.get('name')?.touched){
-          <p>Category name is required</p>
-        }
+    @if(category){
+      <form #updateForm="ngForm" (ngSubmit)="onSubmit(updateForm)">
+        <label class="form-label" for="name">Category Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          [(ngModel)]="category.name"
+          name="name"
+          required
+        >
+        <div class="text-danger">
+          @if(updateForm.form.get('name')?.invalid && updateForm.form.get('name')?.touched){
+            <p>Category name is required</p>
+          }
+        </div>
+        <div class="d-grid mt-3">
+          <button type="submit" class="btn btn-primary">Update Category</button>
+        </div>
+      </form>
+    }
+    @else{
+      <div class="alert alert-warning">
+        <p class="text-center mt-5">Loading category data...</p>
       </div>
-      <div class="d-grid mt-3">
-        <button type="submit" class="btn btn-primary">Update Category</button>
-      </div>
-    </form>
+    }
   </div>
 </div>

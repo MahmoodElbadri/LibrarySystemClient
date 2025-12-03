@@ -5,6 +5,8 @@ import {JsonPipe} from '@angular/common';
 import {ToastrService} from 'ngx-toastr';
 import { LoginService } from "../../_services/login.service";
 import {Router, RouterLink} from '@angular/router';
+import {envirement} from '../../../environments/environment.development';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-categories',
@@ -25,6 +27,8 @@ export class CategoriesComponent implements OnInit {
   role!: any;
   loginService = inject(LoginService);
   router = inject(Router);
+  baseUrl = envirement.apiUrl;
+  http = inject(HttpClient);
 
 
   ngOnInit(): void {
@@ -59,4 +63,10 @@ export class CategoriesComponent implements OnInit {
     })
   }
 
+  protected getBooksByCategory(id: number) {
+   const queryParams = {
+      categoryId: id
+    }
+  this.router.navigate(['/'], {queryParams});
+  }
 }

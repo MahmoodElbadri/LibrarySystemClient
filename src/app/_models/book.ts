@@ -6,4 +6,5 @@ export interface Book {
     coverUrl: string;
     isAvailable: boolean;
     categoryName: string;
+    quantity: number;
 }

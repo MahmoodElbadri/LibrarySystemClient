@@ -26,7 +26,6 @@ export const appConfig: ApplicationConfig = {
         closeButton: true,
         timeOut: 10000
       }),
-      NgbModalModule,
-    )
+    ),
   ]
 };

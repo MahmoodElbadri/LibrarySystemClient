@@ -5,6 +5,8 @@ export interface BookDto {
   description: string;
   coverUrl: string;
   categoryName: string;
+  isAvailable: boolean;
+  quantity: number;
 }
 
 

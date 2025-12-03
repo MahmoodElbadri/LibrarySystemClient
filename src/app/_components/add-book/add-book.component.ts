@@ -46,6 +46,7 @@ export class AddBookComponent implements OnInit {
       author: ['', [Validators.required]],
       category: ['', [Validators.required]],
       description: ['', [Validators.required]],
+      quantity: ['', Validators.required],
       coverImage: ['', [Validators.required]],
     });
   }
@@ -67,11 +68,12 @@ export class AddBookComponent implements OnInit {
     formdata.append('author', model.author);
     formdata.append('description', model.description);
     formdata.append('categoryId', model.category);
+    formdata.append('quantity', model.quantity)
     if (this.selectedImg) {
       formdata.append('coverImage', this.selectedImg);
     } else {
         this.toastr.warning('Please select a cover image.');
-        return; 
+        return;
     }
 
     this.bookService.addBook(formdata).subscribe({
