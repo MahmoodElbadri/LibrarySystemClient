@@ -1,99 +1,68 @@
-# 📚 Library Management System
+# 📚 Library Management Client
 
-A modern web application for managing library operations including book cataloging, user management, and loan tracking. Built with Angular and designed with a clean, responsive interface.
+A modern, responsive Single Page Application (SPA) built with Angular 18 to interact with the Library Management API.
 
-## ✨ Features
+## ✨ Key Features
 
-- **User Authentication**
-  - Secure login and registration
-  - Role-based access control (Admin/User)
-  - JWT token authentication
+### 🏗️ Modern Angular Architecture
+- ⚡️ Built with Angular 18 using Standalone Components
+- 🔄 Utilizes Signals for reactive state management and high performance
 
-- **Book Management**
-  - Add, edit, and delete books
-  - Categorize books
-  - Upload book cover images
-  - Search and filter books
+### 🔐 Authentication & Security
+- 🛡️ HttpInterceptors: Automatically attaches JWT tokens to outgoing requests
+- 🚧 Functional Guards: Protects admin routes and user-specific pages
 
-- **Loan Management**
-  - Borrow and return books
-  - View loan history
-  - Track due dates
+### 👤 User Experience
+- ⚠️ Global Error Handling: Centralized interceptor to catch HTTP errors and display user-friendly Toastr notifications
+- ⚡️ Optimistic UI Updates: Instant UI feedback when borrowing/returning books
+- 📱 Responsive Design: Fully responsive layout using Bootstrap 5
 
-- **Category Management**
-  - Create and manage book categories
-  - Assign categories to books
+### 👑 Admin Dashboard
+- 🛠️ Dedicated view for Admins to manage inventory
+- 📊 Table view of active loans with "Days Overdue" calculation
+- 📧 One-click email notification system for overdue users
+
+### 🔍 Advanced Data Display
+- 📄 Server-side Pagination integration using ngx-bootstrap
+- 🔎 Dynamic Search and Category Filtering
+
+## 🛠️ Tech Stack
+- ⚡️ **Angular 18** - Core framework
+- 📘 **TypeScript** - Type safety
+- 🎨 **Bootstrap 5** - UI components & styling
+- ✨ **FontAwesome** - Icons
+- 🌐 **RxJS & Angular HttpClient** - HTTP client
+- 🧩 **ngx-bootstrap** - Pagination, Modals
+- 🔔 **ngx-toastr** - Notifications
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### 📋 Prerequisites
+- ⚙️ **Node.js** (LTS version)
+- 📦 **Angular CLI**
 
-- Node.js (v16 or later)
-- Angular CLI (v15 or later)
-- .NET Core SDK (for the backend API)
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone ---
-   cd LibrarySystem/LibrarySystem.Client
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Configure environment**
-   - Create a copy of `src/environments/environment.development.ts`
-   - Update the API URL to point to your backend server
-
-4. **Run the application**
-   ```bash
-   ng serve
-   ```
-   The application will be available at `http://localhost:4200`
-
-## 🏗 Project Structure
-
-```
-src/app/
-├── _components/         # Reusable UI components
-│   ├── add-book/       # Add new book form
-│   ├── edit-book/      # Edit existing book
-│   ├── library/        # Main book listing
-│   ├── login/          # Authentication
-│   ├── my-loans/       # User's loan history
-│   └── categories/     # Category management
-├── _guards/            # Route guards
-├── _interceptors/      # HTTP interceptors
-├── _models/            # Data models and DTOs
-└── _services/          # API services
-```
-
-## 🔧 Development
-
-### Code scaffolding
-
+### ⚡️ Installation
+1. 📥 Clone the repository:
 ```bash
-# Generate a new component
-ng generate component components/component-name
-
-# Generate a new service
-ng generate service services/service-name
+git clone https://github.com/MahmoodElbadri/librarysystemclient.git
 ```
 
-### Build
-
+2. 📂 Navigate to the project directory:
 ```bash
-# Development build
-ng build
-
-# Production build
-ng build --configuration production
+cd Library.Client
 ```
 
-## Further help
+3. 📦 Install dependencies:
+```bash
+npm install
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+4. ▶️ Run the development server:
+```bash
+ng serve
+```
+
+5. 🌐 Open http://localhost:4200 in your browser.
+
+
+🔨 Built by Mahmood Elbadri with ❤️
